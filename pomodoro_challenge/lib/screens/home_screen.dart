@@ -13,9 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const tenSecond = 1500;
   int totalSeconds = tenSecond;
   late Timer timer;
-
   bool isRunning = false;
-
   int totalPomodoros = 0;
 
   void onTick(Timer timer) {
@@ -55,6 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return duration.toString().split(".").first.substring(2, 7);
   }
 
+  void onResetPressed() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+      totalSeconds = tenSecond;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,15 +84,23 @@ class _HomeScreenState extends State<HomeScreen> {
           Flexible(
             flex: 3,
             child: Center(
-              child: IconButton(
-                iconSize: 120,
-                color: Theme.of(context).cardColor,
-                onPressed: isRunning ? onPausePressed : onStartPressed,
-                icon: Icon(
-                  isRunning
-                      ? Icons.pause_circle_outline_rounded
-                      : Icons.play_circle_outline_sharp,
-                ),
+              child: Column(
+                children: [
+                  IconButton(
+                    iconSize: 120,
+                    color: Theme.of(context).cardColor,
+                    onPressed: isRunning ? onPausePressed : onStartPressed,
+                    icon: Icon(
+                      isRunning
+                          ? Icons.pause_circle_outline_rounded
+                          : Icons.play_circle_outline_sharp,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.restore_sharp),
+                    onPressed: onResetPressed,
+                  )
+                ],
               ),
             ),
           ),
