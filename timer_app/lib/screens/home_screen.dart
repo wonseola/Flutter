@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     )
                   : Text(
-                      'ROUND $totalGolas CLEAR ! \n press start button',
+                      '$totalGolas clear ! \n press start button',
                       style: TextStyle(
                         color: Theme.of(context).textTheme.displayLarge!.color,
                         fontSize: 25,
