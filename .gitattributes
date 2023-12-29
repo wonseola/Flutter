@@ -2,3 +2,5 @@
 * text=auto
 *.cpp linguist-vendored
 *.cmake linguist-vendored
+*.html linguist-vendored
+
